@@ -16,9 +16,15 @@ jobs:
       - name: setup Node.js
         uses: actions/setup-node@v4
         with:
-            node-version: '22'
+          node-version: '22'
 
       - name: Frontend Compilation
         run: |
-          cd 
-            
+          cd frontend
+          find . -name "*.js" -exec node --check {} +
+
+      - name: Backend Compilation
+        run: |
+          cd backend
+          find . -name "*.js" -exec node --check {} +
+          
