@@ -53,12 +53,12 @@ jobs:
     - name: SonarQube Scan (client)
       uses: sonarsource/sonarqube-scan-action@master
       with:
-        projectBaseDir: frontend   # i th
+        projectBaseDir: frontend   
         args: >
           -Dsonar.projectKey=myorg_client
           -Dsonar.projectName=myorg_client
           -Dsonar.sources=.
-          -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**    # build and dist are biproduct kund of things 
+          -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**    
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -77,7 +77,7 @@ jobs:
           -Dsonar.projectKey=myorg_client
           -Dsonar.projectName=myorg_client
           -Dsonar.sources=.
-          -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**    # build and dist are biproduct kund of things 
+          -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**    
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
