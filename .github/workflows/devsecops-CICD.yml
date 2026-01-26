@@ -43,8 +43,44 @@ jobs:
             ignore-unfixed: true
             vuln-type: 'os,library'
             severity: 'CRITICAL,HIGH'
-            
-        
+
+  sonar-frontend:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: SonarQube Scan (client)
+      uses: sonarsource/sonarqube-scan-action@master
+      with:
+        projectBaseDir: frontend   # i th
+        args: >
+          -Dsonar.projectKey=myorg_client
+          -Dsonar.projectName=myorg_client
+          -Dsonar.sources=.
+          -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**    # build and dist are biproduct kund of things 
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+  sonar-backend:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: SonarQube Scan (client)
+      uses: sonarsource/sonarqube-scan-action@master
+      with:
+        projectBaseDir: backend   
+        args: >
+          -Dsonar.projectKey=myorg_client
+          -Dsonar.projectName=myorg_client
+          -Dsonar.sources=.
+          -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**    # build and dist are biproduct kund of things 
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
   
 
 
