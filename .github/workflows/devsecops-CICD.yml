@@ -45,56 +45,52 @@ jobs:
             severity: 'CRITICAL,HIGH'
 
   sonar-frontend:
+    name: SonarCloud Frontend Scan
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
-    - name: SonarQube Scan (frontend)
-      uses: sonarsource/sonarqube-scan-action@master
       with:
-        projectBaseDir: frontend
-        args: >
-          -Dsonar.projectKey=myorg_frontend
-          -Dsonar.projectName=myorg_frontend
-          -Dsonar.sources=.
-          -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        fetch-depth: 0
 
-    - name: Debug Sonar secrets (frontend)
+    - name: SonarCloud Scan (Frontend)
+      uses: SonarSource/sonarcloud-github-action@v2
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      run: |
-        if [ -z "$SONAR_TOKEN" ]; then echo "SONAR_TOKEN missing"; else echo "SONAR_TOKEN OK"; fi
-        if [ -z "$SONAR_HOST_URL" ]; then echo "SONAR_HOST_URL missing"; else echo "SONAR_HOST_URL OK"; fi
+      with:
+        args: >
+          -Dsonar.organization=shantaveerkhyalap
+          -Dsonar.projectKey=shantaveerkhyalap
+          -Dsonar.projectName=myorg_frontend
+          -Dsonar.sources=frontend
+          -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**
+
 
   sonar-backend:
+    name: SonarCloud Backend Scan
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
-    - name: SonarQube Scan (backend)
-      uses: sonarsource/sonarqube-scan-action@master
       with:
-        projectBaseDir: backend
-        args: >
-          -Dsonar.projectKey=myorg_backend
-          -Dsonar.projectName=myorg_backend
-          -Dsonar.sources=.
-          -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        fetch-depth: 0
 
-    - name: Debug Sonar secrets (backend)
+    - name: SonarCloud Scan (Backend)
+      uses: SonarSource/sonarcloud-github-action@v2
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      run: |
-        if [ -z "$SONAR_TOKEN" ]; then echo "SONAR_TOKEN missing"; else echo "SONAR_TOKEN OK"; fi
-        if [ -z "$SONAR_HOST_URL" ]; then echo "SONAR_HOST_URL missing"; else echo "SONAR_HOST_URL OK"; fi
+      with:
+        args: >
+          -Dsonar.organization=shantaveerkhyalap
+          -Dsonar.projectKey=shantaveerkhyalap
+          -Dsonar.projectName=myorg_backend
+          -Dsonar.sources=backend
+          -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**
+
+
+
+
+
+
+     
 
