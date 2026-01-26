@@ -39,7 +39,7 @@ jobs:
             scan-type: 'fs'
             scan-ref: '.'   # path which we want to scan
             format: 'table'  # result in table format
-            ignore-infixed: true
+            ignore-unfixed: true
             vuln-type: 'os, library'
             severity: 'CRITICAL, HIGH'
             
