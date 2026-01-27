@@ -108,6 +108,7 @@ jobs:
 
   Build_backend_image_and_push:
     runs-on: ubuntu-latest
+    needs: sonar-backend
     steps:
       - name: checkout Code
         uses: actions/checkout@v4
@@ -134,7 +135,7 @@ jobs:
 
   Trivy_image_scan:
     runs-on: ubuntu-latest
-    needs: Build_backend_image_and_push
+    needs: ["Build_backend_image_and_push", "Build_frontend_docker_image_and_push"]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
