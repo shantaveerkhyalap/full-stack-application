@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: chatapp-frontend
-        image: shantaveerkhyalap/chatapp-frontend:latest
+        image: shantaveerkhyalap/chatapp-frontend:55e1b1f97e5c82d3caa1e6788757b9cb9c3aae58
         resources:
           limits:
             memory: "128Mi"
