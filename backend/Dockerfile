@@ -23,7 +23,6 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 # Copy dependencies from builder
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app ./
-COPY ../frontend/dist /app/frontend/dist
 
 # Set environment variables
 ENV NODE_ENV=production
@@ -40,4 +39,5 @@ CMD ["npm", "start"]
 # Health check
 #HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 #  CMD curl -f http://localhost:5001/health || exit 1
+
 
