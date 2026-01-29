@@ -3,6 +3,9 @@ name: CI/CD Pipeline
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'k8s/backend-deployment.yml'
+      - 'k8s/frontend-deployment.yml'
   pull_request:
     branches: [ main ]
   
